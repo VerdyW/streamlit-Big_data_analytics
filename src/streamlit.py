@@ -363,7 +363,7 @@ def grafik_pasangan(pairs, n=15) -> go.Figure:
     return fig
 
 
-def grafik_matriks(pairs, urut) -> go.Figure:
+def grafik_heatmap(pairs, urut) -> go.Figure:
     M = pd.DataFrame(0.0, index=urut, columns=urut)
     for _, r in pairs.iterrows():
         M.loc[r["kat1"], r["kat2"]] = r["n"]
@@ -378,7 +378,7 @@ def grafik_matriks(pairs, urut) -> go.Figure:
         colorbar=dict(title=dict(text="order"), thickness=14),
         hovertemplate="%{y}<br>%{x}<br>%{z:,.0f} order<extra></extra>"))
     fig.update_layout(
-        title="Matriks co-purchase antar kategori<br>",
+        title="Heatmap co-purchase antar kategori<br>",
         height=760, margin=dict(t=110))
     fig.update_yaxes(autorange="reversed")
     fig.update_xaxes(tickangle=-45)
@@ -709,7 +709,7 @@ def main() -> None:
 
         st.plotly_chart(grafik_pasangan(pairs), width="stretch")
 
-        st.plotly_chart(grafik_matriks(pairs, list(vol.index)), width="stretch")
+        st.plotly_chart(grafik_heatmap(pairs, list(vol.index)), width="stretch")
 
         st.subheader("Graph co-purchase")
         st.iframe(jaringan_kategori(pairs), height=780)
