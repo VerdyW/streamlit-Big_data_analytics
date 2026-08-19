@@ -1,0 +1,6 @@
+streamlit==1.61.1
+streamlit-option-menu==0.4.0
+pandas==3.0.3
+pyarrow==24.0.0
+plotly==6.9.0
+pyvis==0.3.2
